@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!--th가 프리픽스-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>안녕하세요d</p>
+    <p>dfdfdfdfdf</p>
+    <p>dfdfdfdfdf</p>
+    <p>dfdfdfdfdf</p>
+    <p>dfdfdfdfdf</p>
+    <p>dfdfdfdfdf</p>
+
+    <!--th:text 태그 내부에 텍스틀르 출력할떄 사용-->
+    <p th:text="${data}">hello!</p>
+    <p th:text="${data2} + '년 입니다.'">dfdf</p>
+
+    <!-- th:text를 사용하지 않고 값을 찎을떄-->
+    [[${data}]]
+    <p>[[${data2} + '년']]</p>
+
+</body>
+</html>

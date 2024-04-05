@@ -24,5 +24,30 @@ public class PostServiceImpl implements PostService {
         return postDao.getDataCount(map);
     }
 
+    @Override
+    public Post getReadPost(int postId) throws Exception {
+        return postDao.getReadPost(postId);
+    }
+
+    @Override
+    public void updateHitCount(int postId) throws Exception {
+        postDao.updateHitCount(postId);
+    }
+
+    @Override
+    public void insertPost(Post post) throws Exception {
+        postDao.insertPost(post);
+    }
+
+    @Override
+    public void updatePost(Post post) throws Exception {
+        postDao.updatePost(post);
+    }
+
+    @Override
+    public void deletePost(int postId) throws Exception {
+        postDao.deletePost(postId);
+    }
+
 
 }

@@ -4,6 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.myblog.dao.PostDao">
+
+
     <resultMap id="Member" type="Member">
         <result column="member_id" property="memberId"/>
         <result column="email" property="email"/>
@@ -25,7 +27,8 @@
         <result column="update_date" property="updateDate"/>
         <result column="views" property="views"/>
         <result column="category_code" property="categoryCode"/>
-        <collection property="category" resultMap="Category"/> <!--resultMap ID: Category -->
+        <collection property="category" resultMap="Category"/> <!--resultMap ID: Category --> <!-- propertysms dto 속성-->
+        <collection property="member" resultMap="Member"/>
     </resultMap>
 
     <select id="getPostList" parameterType="map" resultType="Post" resultMap="Post">
@@ -53,4 +56,32 @@
         AND ${searchKey} LIKE '%' || #{searchValue} || '%'
 
     </select>
+
+    <select id="getReadPost" parameterType="int" resultType="Post" resultMap="Post">
+
+        SELECT p.post_id, p.subject, p.content, p.member_id, p.write_date, p.update_date, p.views, p.category_code, m.MEMBER_id, m.name, m.email
+        FROM post p, MEMBER m
+        WHERE p.member_id = m.MEMBER_ID
+        AND p.post_id = #{postId}
+
+    </select>
+
+    <update id ="updateHitCount" parameterType="int">
+        update post set views = views + 1 where post_id = #{postId}
+
+    </update>
+    
+    <insert id="insertPost" parameterType="Post" >
+        insert into post values(post_seq.nextval, #{subject}, #{content}, #{memberId}, sysdate, sysdate, 0, #{categoryCode})
+    </insert>
+
+    <update id ="updatePost" parameterType="Post">
+        update post set subject = #{subject},
+        content = #{content}, update_date = sysdate, category_code = #{categoryCode}
+        where post_id = #{postId}
+    </update>
+
+    <delete id="deletePost" parameterType="int">
+            delete post where post_id = #{postId}
+    </delete>
 </mapper>

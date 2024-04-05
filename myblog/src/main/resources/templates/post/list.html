@@ -25,13 +25,15 @@
                     <tr th:if="${#lists.size(lists)} > 0" th:each="post:${lists}">
                         <th scope="row" th:text="${post.postId}"></th>
                         <td th:text="${post.category.categoryName}"></td>
-                        <td th:text="${post.subject}"></td>
+
+                        <td><a th:href="|@{${articleUrl}}&postId=@{${post.postId}}|"  th:text="${post.subject}">   </a></td>
                         <td th:text="${post.writeDate}"></td>
                         <td th:text="${post.views}"></td>
                     </tr>
+                 
                     <!-- 등록된 포스트가 없을 경우 -->
                     <tr th:if="${#lists.size(lists)} == 0">
-                        <td colsapn="5">등록된 게시물이 없습니다.</td>
+                        <td colspan="5">등록된 게시물이 없습니다.</td>
                     </tr>
                     </tbody>
                 </table>

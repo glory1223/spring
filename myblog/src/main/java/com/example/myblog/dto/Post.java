@@ -14,5 +14,8 @@ public class Post {
     private String updateDate;
     private int views;
     private String categoryCode;
+
     private Category category; // Post 객체는 카테고리객체를 가지고있다.
+    private Member member;
+
 }

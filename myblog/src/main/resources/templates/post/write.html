@@ -63,8 +63,13 @@
 
     <script th:inline="javascript">
         let myEditor;
+
         ClassicEditor
-            .create( document.querySelector( '#editor' ) )
+            .create( document.querySelector( '#editor' ), {
+                ckfinder: {
+                 uploadUrl : '/postImgUpload' // 이미지 request 경로 지정
+                }
+            })
             .then(editor => {
                 myEditor = editor; //생성한 에디터 객체
             })

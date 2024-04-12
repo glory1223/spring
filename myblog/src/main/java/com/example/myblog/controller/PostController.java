@@ -83,7 +83,7 @@ public class PostController {
 
     }
 
-    @RequestMapping(value = "/list", method= {RequestMethod.GET, RequestMethod.POST}) //localhost/list // 같은경로로 get방식으로 오는 리퀘스트랑 post방식으로오는 리퀘스트를 다 받을수있따.
+    @RequestMapping(value = "/list", method= {RequestMethod.GET, RequestMethod.POST}) //localhost/list // {RequestMethod.GET, RequestMethod.POST}
     public String list(HttpSession session, HttpServletRequest request, Model model) { //매개변수 세션에서 멤버id
 
         try {
@@ -269,6 +269,8 @@ public class PostController {
         //HttpStatus.OK일떄는 ajax의 success함수로 결과가 출력된다.
         return new ResponseEntity<Integer>(postId, HttpStatus.OK);
     }
+
+
 
     @PostMapping(value = "/postImgUpload")
     public String postImgUpload(MultipartHttpServletRequest request, Model model) {

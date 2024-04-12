@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GloryBooks</title>
+
+    <link rel="icon" href="img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="css/all.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="css/slick.css">
+
+    <!--공통으로 사용할 커스터마이징 된  style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- 각 페이지의 CSS가 작성될 위치지정-->
+    <th:block layout:fragment="css"></th:block>
+
+</head>
+<body>
+    <div th:replace="fragments/header::header"></div>
+    <div layout:fragment="content" class="content"></div>
+    <div th:replace="fragments/footer::footer"></div>
+
+
+    <!-- 공통으로 작성할 js플러그인 jquery plugins here-->
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- magnific popup js -->
+    <script src="js/jquery.magnific-popup.js"></script>
+    <!-- carousel js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- slick js -->
+    <script src="js/slick.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+
+    <!-- 공통으로 사용할 커스터마이징된 custom js -->
+    <script src="js/custom.js"></script>
+
+    <!-- 각 페이지의 JS가 작성될 위치지정-->
+    <th:block layout:fragment="script"></th:block>
+
+</body>
+</html>

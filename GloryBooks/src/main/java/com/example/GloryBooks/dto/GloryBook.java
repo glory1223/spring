@@ -11,4 +11,6 @@ public class GloryBook {
     private int bookPrice;
     private String bookAuthor;
     private String bookPublisher;
+    private String bookContent;
+    private String bookImage;
 }

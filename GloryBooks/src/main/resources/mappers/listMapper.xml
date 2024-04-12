@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.gloryBooks.dao.GloryBookDao">
+
+    <resultMap id="GloryBook" type="GloryBook">
+        <result column="book_id" property="bookId"/>
+        <result column="book_name" property="bookName"/>
+        <result column="book_price" property="bookPrice"/>
+        <result column="book_author" property="bookAuthor"/>
+        <result column="book_publisher" property="bookPublisher"/>
+        <result column="book_content" property="bookContent"/>
+        <result column="book_image" property="bookImage"/>
+    </resultMap>
+
+    <select id="getBookList" parameterType="map" resultType="GloryBook" resultMap="GloryBook">
+
+        SELECT * FROM glorybook WHERE ${searchKey} LIKE '%' || #{searchValue} || '%'
+
+    </select>
+
+    <select id="getReadBook" parameterType="int" resultType="GloryBook" resultMap="GloryBook">
+
+            SELECT*FROM glorybook WHERE book_id = #{bookId}
+
+    </select>
+</mapper>

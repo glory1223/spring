@@ -1,0 +1,116 @@
+!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout1}">
+
+<main layout:fragment="content" class="main">
+
+
+
+    <!-- breadcrumb part start-->
+    <section class="breadcrumb_part single_product_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb part end-->
+
+  <!--================Single Product Area =================-->
+  <div class="product_image_area">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <div class="product_img_slide owl-carousel">
+            <div class="single_product_img">
+              <img th:src="${gloryBook.bookImage}" alt="#" class="img-fluid" style="width:300px">
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="single_product_text text-center">
+            <h3 th:text="${gloryBook.bookName}"> <br>
+                </h3>
+            <p th:text="${gloryBook.bookContent}"></p>
+            <div class="card_area">
+                <div class="product_count_area">
+                    <p>수량</p>
+                    <div class="product_count d-inline-block">
+                        <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+                        <input id="quantityInput" class="product_count_item input-number" type="text" value="1" min="0" max="10" name="quantity">
+                        <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                    </div>
+                    <p th:text="${gloryBook.bookPrice}">개당 가격</p>
+                </div>
+                  <div class="add_to_cart">
+                      <a th:onclick="" class="btn_3">Add to cart</a>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--================End Single Product Area =================-->
+   <!-- subscribe part here -->
+   <section class="subscribe_part section_padding">
+      <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-lg-8">
+                  <div class="subscribe_part_content">
+                      <h2>Get promotions & updates!</h2>
+                      <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
+                      <div class="subscribe_form">
+                          <input type="email" placeholder="Enter your mail">
+                          <a href="#" class="btn_1">Subscribe</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- subscribe part end -->
+
+</main>
+
+<th:block layout:fragment="script"></th:block>
+<script th:inline="javascript">
+    function addToCart(bookId) {
+        const result = confirm("장바구니에 추가하시겠습니까?")
+        const url = '/addToCart/' + [[$glorybook.bookId]];
+
+if (result) {
+
+ var quantity = document.getElementById("quantityInput").value; // 장바구니에 추가할 상품 수량
+        var data = {
+            "bookId": bookId,
+            "quantity": quantity
+        };
+
+        // AJAX 요청으로 장바구니에 상품 추가
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: url,
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (response) {
+                // 장바구니 추가 성공 시 처리
+                alert("Item added to cart successfully!");
+            },
+            error: function (error) {
+                // 에러 처리
+                alert("Failed to add item to cart: " + error.responseJSON.message);
+            }
+        });
+       }
+
+    }
+</script>
+
+</html>

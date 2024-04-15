@@ -16,14 +16,26 @@
     </resultMap>
 
     <select id="getBookList" parameterType="map" resultType="GloryBook" resultMap="GloryBook">
-
         SELECT * FROM glorybook WHERE ${searchKey} LIKE '%' || #{searchValue} || '%'
-
     </select>
 
     <select id="getReadBook" parameterType="int" resultType="GloryBook" resultMap="GloryBook">
-
-            SELECT*FROM glorybook WHERE book_id = #{bookId}
-
+        SELECT * FROM glorybook WHERE book_id = #{bookId}
     </select>
+
+    <insert id="insertBook" parameterType="GloryBook">
+        INSERT INTO glorybook (book_id, book_name, book_price, book_author, book_publisher, book_content) VALUES (glorybook_seq.nextval, #{bookName}, #{bookPrice}, #{bookAuthor}, #{bookPublisher}, #{bookContent})
+    </insert>
+
+
+    <delete id="deleteBook" parameterType="int">
+        delete glorybook where book_id = #{bookId}
+    </delete>
+
+    <update id ="updateBook" parameterType="GloryBook">
+        update gloryBook set book_name = #{bookName},
+        book_price = #{bookPrice}, book_author = #{bookrAuthor}, book_publisher = #{bookPublisher}, book_content = #{bookContent}
+        where book_id = #{bookId}
+
+    </update>
 </mapper>

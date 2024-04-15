@@ -58,14 +58,14 @@
 </main>
 
 <!-- 각 페이지의 JS가 작성될 위치지정-->
-<th: block layout:fragment="script">
+<th:block block layout:fragment="script">
     <script th:src="@{plugins/ckeditor5/build/ckeditor.js}"></script>
 
     <script th:inline="javascript">
         let myEditor;
 
         ClassicEditor
-            .create( document.querySelector( '#editor' ), {
+            .create( document.querySelector(    '#editor' ), {
                 ckfinder: {
                  uploadUrl : '/postImgUpload' // 이미지 request 경로 지정
                 }
@@ -94,5 +94,5 @@
             f.submit(); //전송
         }
     </script>
-</th:>
+</th:block>
 </html>

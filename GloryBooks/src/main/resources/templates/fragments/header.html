@@ -44,9 +44,10 @@
                                     <a th:unless="${session.name == null}" href="/" th:text="${session.name} + '님'"></a>
                                     <a th:unless="${session.name == null}" href="/logout" class="btn btn-dark" style="color:white;">LOGOUT</a>
                                     <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                    <a class="dropdown-item" th:href="@{'/cart/' + ${session.userId}}">shopping cart</a>
+                                    <a class="dropdown-item" th:href="cart">shopping cart</a>
                                     <a class="dropdown-item" href="confirmation.html">confirmation</a>
                                     <a class="dropdown-item" href="elements.html">elements</a>
+<!--                                  @{'/cart/userId=' + ${session.user_id}}  -->
                                 </div>
                             </li>
 

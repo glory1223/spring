@@ -45,10 +45,10 @@
                         <input id="quantityInput" class="product_count_item input-number" type="text" value="1" min="0" max="10" name="quantity">
                         <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
                     </div>
-                    <p th:text="${gloryBook.bookPrice}">개당 가격</p>
+                    <p th:text="${gloryBook.bookPrice} + '원'">개당 가격</p>
                 </div>
                   <div class="add_to_cart">
-                      <a th:onclick="" class="btn_3">Add to cart</a>
+                      <a onclick="addToCart([[$glorybook.bookId]])" class="btn_3">Add to cart</a>
                   </div>
             </div>
           </div>
@@ -56,61 +56,122 @@
       </div>
     </div>
   </div>
+
+    <div class="single_sedebar">
+        <div class="select_option">
+            <div class="select_option_list">삭제 <i class="right fas fa-caret-down"></i> </div>
+            <div class="select_option_dropdown">
+                <p><a onclick="deleteBook(); return false;" style="cursor:pointer;" >삭제</a></p>
+                <a th:onclick="|location.href='rewrite?bookId=@{${gloryBook.bookId}}&@{${params}}'|" style="cursor:pointer;">수정</a>
+
+            </div>
+        </div>
+    </div>
+
   <!--================End Single Product Area =================-->
    <!-- subscribe part here -->
    <section class="subscribe_part section_padding">
-      <div class="container">
-          <div class="row justify-content-center">
-              <div class="col-lg-8">
-                  <div class="subscribe_part_content">
-                      <h2>Get promotions & updates!</h2>
-                      <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
-                      <div class="subscribe_form">
-                          <input type="email" placeholder="Enter your mail">
-                          <a href="#" class="btn_1">Subscribe</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+       <div class="comment-area my-5">
+           <h3 class="mb-4 text-center">2개의 댓글</h3>
+           <div class="comment-area-box media">
+               <img alt="" src="images/blog-user-2.jpg" class="img-fluid float-left mr-3 mt-2">
+
+               <div class="media-body ml-4">
+                   <h4 class="mb-0">Micle harison </h4>
+                   <span class="date-comm font-sm text-capitalize text-color"><i
+                           class="ti-time mr-2"></i>June 7, 2019 </span>
+
+                   <div class="comment-content mt-3">
+                       <p>Lorem ipsum dolor sit amet, usu ut perfecto postulant deterruisset, libris causae
+                           volutpat at est, ius id modus laoreet urbanitas. Mel ei delenit dolores.</p>
+                   </div>
+                   <div class="comment-meta mt-4 mt-lg-0 mt-md-0">
+                       <a href="#" class="text-underline ">Reply</a>
+                   </div>
+               </div>
+           </div>
+
+           <div class="comment-area-box media mt-5">
+               <img alt="" src="images/blog-user-3.jpg" class="mt-2 img-fluid float-left mr-3">
+
+               <div class="media-body ml-4">
+                   <h4 class="mb-0 ">John Doe </h4>
+                   <span class="date-comm font-sm text-capitalize text-color"><i
+                           class="ti-time mr-2"></i>June 7, 2019 </span>
+
+                   <div class="comment-content mt-3">
+                       <p>Some consultants are employed indirectly by the client via a consultancy staffing
+                           company. </p>
+                   </div>
+                   <div class="comment-meta mt-4 mt-lg-0 mt-md-0">
+                       <a href="#" class="text-underline">Reply</a>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <form class="comment-form mb-5 gray-bg p-5" id="comment-form">
+           <h3 class="mb-4 text-center">댓글 남기기</h3>
+           <div class="row">
+               <div class="col-lg-12">
+                                <textarea class="form-control mb-3" name="comment" id="comment" cols="30" rows="5"
+                                          placeholder="Comment"></textarea>
+               </div>
+               <div class="col-md-6">
+                   <div class="form-group">
+                       <input class="form-control" type="text" name="name" id="name" placeholder="Name:">
+                   </div>
+               </div>
+               <div class="col-md-6">
+                   <div class="form-group">
+                       <input class="form-control" type="text" name="mail" id="mail" placeholder="Email:">
+                   </div>
+               </div>
+           </div>
+
+           <input class="btn btn-primary" type="submit" name="submit-contact" id="submit_contact"
+                  value="등록">
+       </form>
   </section>
   <!-- subscribe part end -->
 
 </main>
 
-<th:block layout:fragment="script"></th:block>
-<script th:inline="javascript">
-    function addToCart(bookId) {
-        const result = confirm("장바구니에 추가하시겠습니까?")
-        const url = '/addToCart/' + [[$glorybook.bookId]];
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        <!-- 단순insert 는 form태그로하고 페이지이동하지 않고 success에서 처리하려면 ajax로 -->
 
-if (result) {
+        function deleteBook() {
+              const result = confirm("해당 포스트 삭제하시겠습니까?");
+              const url = '/delete/' + [[${gloryBook.bookId}]]; // reqeust URL
 
- var quantity = document.getElementById("quantityInput").value; // 장바구니에 추가할 상품 수량
-        var data = {
-            "bookId": bookId,
-            "quantity": quantity
-        };
 
-        // AJAX 요청으로 장바구니에 상품 추가
-        $.ajax({
-            type: "POST",
-            contentType: "application/json",
-            url: url,
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function (response) {
-                // 장바구니 추가 성공 시 처리
-                alert("Item added to cart successfully!");
-            },
-            error: function (error) {
-                // 에러 처리
-                alert("Failed to add item to cart: " + error.responseJSON.message);
-            }
-        });
-       }
+              if(result) {
+                $.ajax({
+				url : url,
+				type : "DELETE", //전송방식
+				contentType : "application/json",
+				dataType : "json",
+				cache : false,
+				success : function(result, status) {
+                    console.log("result bookId: " + result + ", statusCode: " + status);
+                    location.href = '/list';
+				},
+				error : function(jqXHR, status, error) {
+				    console.log("result: " + jqXHR.responseText + ", statusCode: " + status);
+				    alert(jqXHR.reponseText);
 
-    }
-</script>
 
+				    //삭제 권한이 없거나 로그인이 풀리면 로그인 페이지로 이동.
+				    if(jqXHR.status == '401') { // UNAUTHORIZED
+				        location.href = '/login';
+				    } else {
+				        alert(jqXHR.responseText);
+				    }
+				}
+			  });
+              }
+        }
+    </script>
+</th:block>
 </html>

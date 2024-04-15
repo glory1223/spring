@@ -5,10 +5,5 @@
 
 <mapper namespace="com.example.gloryBooks.dao.CartItemDao">
 
-    <insert id="addToCart" parameterType="CartItem">
-        <!-- 장바구니에 상품 추가하는 쿼리 -->
-        INSERT INTO cartitem (cartitem_id, quantity, cart_id, book_id)
-        VALUES (#{cartitemId}, #{quantity}, #{cartId}, #{bookId})
-    </insert>
 
 </mapper>

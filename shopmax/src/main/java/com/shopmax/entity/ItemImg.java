@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ItemIng {
+public class ItemImg {
 
     @Id
     @Column(name="item_img_id")
@@ -25,7 +25,7 @@ public class ItemIng {
     
     private String repImgYn; // 대표 이미지 여부 (Y:썸네일이미지, N:일반이미지)
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 }

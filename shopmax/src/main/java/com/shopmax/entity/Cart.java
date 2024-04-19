@@ -10,16 +10,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Cart {
-
-    
+public class Cart extends BaseEntity {
 
     @Id
     @Column(name= "cart_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne // 외래키지정 Cart가 Member를 참조한다. (Member: 부모, Cart: 자식)
+    @OneToOne(fetch = FetchType.LAZY) // 외래키지정 Cart가 Member를 참조한다. (Member: 부모, Cart: 자식)
     @JoinColumn(name = "member_id") // Member 테이블에 있는 PK를 FK로 사용하겠다.
     private Member member;
 }

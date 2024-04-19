@@ -22,9 +22,23 @@ public class QCart extends EntityPathBase<Cart> {
 
     public static final QCart cart = new QCart("cart");
 
+    public final QBaseEntity _super = new QBaseEntity(this);
+
+    //inherited
+    public final StringPath createBy = _super.createBy;
+
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
     public final QMember member;
+
+    //inherited
+    public final StringPath modifiedBy = _super.modifiedBy;
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> regTime = _super.regTime;
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updateTime = _super.updateTime;
 
     public QCart(String variable) {
         this(Cart.class, forVariable(variable), INITS);
@@ -44,7 +58,7 @@ public class QCart extends EntityPathBase<Cart> {
 
     public QCart(Class<? extends Cart> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.member = inits.isInitialized("templates/member") ? new QMember(forProperty("templates/member")) : null;
     }
 
 }

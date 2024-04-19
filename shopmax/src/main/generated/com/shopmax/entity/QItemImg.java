@@ -11,16 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QItemIng is a Querydsl query type for ItemIng
+ * QItemImg is a Querydsl query type for ItemImg
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QItemIng extends EntityPathBase<ItemIng> {
+public class QItemImg extends EntityPathBase<ItemImg> {
 
-    private static final long serialVersionUID = 1011814129L;
+    private static final long serialVersionUID = 1011814098L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QItemIng itemIng = new QItemIng("itemIng");
+    public static final QItemImg itemImg = new QItemImg("itemImg");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
@@ -34,23 +34,23 @@ public class QItemIng extends EntityPathBase<ItemIng> {
 
     public final StringPath repImgYn = createString("repImgYn");
 
-    public QItemIng(String variable) {
-        this(ItemIng.class, forVariable(variable), INITS);
+    public QItemImg(String variable) {
+        this(ItemImg.class, forVariable(variable), INITS);
     }
 
-    public QItemIng(Path<? extends ItemIng> path) {
+    public QItemImg(Path<? extends ItemImg> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QItemIng(PathMetadata metadata) {
+    public QItemImg(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QItemIng(PathMetadata metadata, PathInits inits) {
-        this(ItemIng.class, metadata, inits);
+    public QItemImg(PathMetadata metadata, PathInits inits) {
+        this(ItemImg.class, metadata, inits);
     }
 
-    public QItemIng(Class<? extends ItemIng> type, PathMetadata metadata, PathInits inits) {
+    public QItemImg(Class<? extends ItemImg> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.item = inits.isInitialized("item") ? new QItem(forProperty("item")) : null;
     }

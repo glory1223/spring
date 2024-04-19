@@ -8,11 +8,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="member")
+@Table(name= "templates/member")
 @Getter
 @Setter
 @ToString
-public class Member {
+public class Member  extends BaseEntity {
 
     @Id
     @Column(name="member_id")

@@ -11,6 +11,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 
 import java.time.LocalDateTime;
@@ -41,7 +43,7 @@ public class ItemRepositoryTest {
         //save는 insert한 엔티티 객체를 그대로 return 해준다.
         System.out.println("insert한 엔티티 객체: " + savedItem);
     }
-
+    @Test
     //그냥 데이터를 10개저장할거임.
     public void createItemList() {
         for(int i = 1; i <= 10; i++) {
@@ -140,7 +142,7 @@ public class ItemRepositoryTest {
             System.out.println(item);
         }
     }
-    
+
     @Test
     @DisplayName("JPQL @Query를 이용한 상품 조회 테스트")
     public void findByItemDetailTest() {
@@ -207,7 +209,7 @@ public class ItemRepositoryTest {
                 .where(qItem.itemSellStatus.eq(ItemSellStatus.SELL))
                 .where(qItem.itemDetail.like("%테스트 상품 상세%"))
                 .orderBy(qItem.price.desc());
-        
+
         List<Item> itemList = query.fetch(); //쿼리문 실행
 
         for(Item item : itemList) {
@@ -290,6 +292,38 @@ public class ItemRepositoryTest {
         for(Item item : itemList) {
             System.out.println(item);
         }
+
+    }
+
+    @Test
+    @DisplayName("querydsl 조회 테스트2")
+    public void queryDslTest2() {
+        JPAQueryFactory qf = new JPAQueryFactory(em);
+        QItem qItem = QItem.item;
+
+        /*
+        select * from item
+        where item_sell_status = 'SELL'
+        and item_detail like '%테스트 상품 상세%'
+        and price > 10003;
+         */
+        Pageable page = PageRequest.of(0,4); // of(시작페이지 번호, 한페이지당 조회할 레코드의 갯수)
+
+
+        JPAQuery<Item> query = qf.selectFrom(qItem)
+                .where(qItem.itemSellStatus.eq(ItemSellStatus.SELL))
+                .where(qItem.itemDetail.like("%테스트 상품 상세%"))
+                .where(qItem.price.gt(10003))
+                .offset(page.getOffset())
+                .limit(page.getPageSize());
+
+
+        List<Item> itemList = query.fetch();
+
+        for(Item item : itemList) {
+            System.out.println(item);
+        }
+
 
     }
 }

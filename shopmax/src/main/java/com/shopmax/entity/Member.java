@@ -47,8 +47,8 @@ public class Member  extends BaseEntity {
         member.setPassword(password); // (memberFormDto.getPassword() = 사용자가 뷰단에서 입력한 패스워드) // DB에는 최종적으로 암호화된 패스워드가 저장되도록한다.
 
         // 개발자가 지정하는 정보.
-        member.setRole(Role.USER); // 일반 사용자로 가입한다.
-        // member.setRole(Role.ADMIN) // 관리자로 가입한다.
+        // member.setRole(Role.USER); // 일반 사용자로 가입한다.
+         member.setRole(Role.ADMIN); // 관리자로 가입한다.
 
         return member;
     }

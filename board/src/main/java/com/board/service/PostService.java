@@ -1,9 +1,12 @@
 package com.board.service;
 
 import com.board.dto.PostFormDto;
+import com.board.dto.PostSearchDto;
 import com.board.entity.Post;
 import com.board.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +28,15 @@ public class PostService {
 
         return post.getId(); // 게시글 등록 후 게시물ID 리턴.
     }
+
+
+    @Transactional (readOnly = true)
+    public Page<Post>getAdminPostPage(PostSearchDto postSearchDto, Pageable pageable) {
+        Page<Post> postPage  = postRepository.getAdminPostPage(postSearchDto, pageable);
+       return postPage;
+
+    }
+
 
 
 }

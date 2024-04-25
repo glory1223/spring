@@ -98,20 +98,46 @@
 <th:block layout:fragment="script">
     <script th:inline="javascript">
 
-        //처음 상세페이지 화면에 들어올때 총 상품금액이 바로 보여야 하므로 실행.
+
+        //처음 상세페이지 화면에 들어올때 총 상품금액이 바로 보여야 하므로 실행
         calculateTotalPrice();
 
-        //< 이벤트> 수량 버튼(-,+)을 클릭할때 마다 총 가격을 구한다.
-        $('.count_btn').click(function() {
-            calculateTotalPrice();
-        });
-
         function calculateTotalPrice() {
-            var count = $("#count").val(); // 수량
-            var price = $("#price").val(); // 가격
-            var totalPrice = (price * count).toLocaleString('ko-KR'); // 천단위 콤마
-            $("#totalPrice").html(totalPrice + '원'); // 총가격 출력
-         }
+            var count = $("#count").val(); //수량
+            var price = $("#price").val(); //가격
+            var totalPrice = (price * count).toLocaleString('ko-KR'); //천단위 콤마
+            $("#totalPrice").html(totalPrice + '원'); //총가격 출력
+        }
+
+        //main.js에서 가져와서 수정
+        $('.js-btn-minus').on('click', function(e){
+			e.preventDefault();
+			if ( $(this).closest('.input-group').find('.form-control').val() > 1  ) {
+				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
+			} else {
+				$(this).closest('.input-group').find('.form-control').val(parseInt(1));
+			}
+
+			calculateTotalPrice();
+		});
+
+		$('.js-btn-plus').on('click', function(e){
+			e.preventDefault();
+			const stock = [[${item.stockNumber}]];
+            var count = $("#count").val(); //수량
+
+			if(count >= stock)  {
+			    alert("더이상 재고가 존재하지 않습니다!")
+			    $(this).closest('.input-group').find('.form-control').val(parseInt(count));
+			    return;
+			}
+
+			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+
+		    calculateTotalPrice();
+		});
+
+
     </script>
 </th:block>
 </html>

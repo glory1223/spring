@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class Post {
+public class Post extends BaseEntity{
     @Id
     @Column(name = "post_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +20,7 @@ public class Post {
 
     private String title;
 
+    private String name;
 
 
     @Lob //clob과 같은 큰타입의 문자타입으로 컬럼을 만든다

@@ -9,6 +9,6 @@ import lombok.Setter;
 public class ItemSearchDto {
     private String searchDateType;
     private ItemSellStatus searchSellStatus;
-    private String searchBy;
-    private String searchQuery = "";
+    private String searchBy; // 검색 등록자
+    private String searchQuery = ""; // 검색내용?
 }

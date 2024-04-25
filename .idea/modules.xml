@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gloryBooks.main.iml" filepath="$PROJECT_DIR$/.idea/modules/gloryBooks.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/board.main.iml" filepath="$PROJECT_DIR$/.idea/modules/board.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shopmax.main.iml" filepath="$PROJECT_DIR$/.idea/modules/shopmax.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring.iml" filepath="$PROJECT_DIR$/.idea/spring.iml" />
     </modules>
   </component>

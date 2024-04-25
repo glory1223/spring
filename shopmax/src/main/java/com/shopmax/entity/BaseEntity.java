@@ -17,7 +17,7 @@ public class BaseEntity extends BaseTimeEntity{
 
     @CreatedBy // 최초로 게시물을 등록한 사람의 id를 저장 및 감지.
     @Column(updatable = false) // 해당 컬럼에 대한 값은 업데이트 금지.
-    private String createBy; // 등록한 사람
+    private String createdBy; // 등록한 사람
 
     @LastModifiedBy // 게시물을 수정한 사람의 id를 저장 및 감지.
     private String modifiedBy; // 수정한 사람

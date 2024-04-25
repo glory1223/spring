@@ -8,25 +8,22 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "post")
 @Getter
 @Setter
 @ToString
-public class Comment {
+public class Post {
     @Id
-    @Column(name = "comment_id")
+    @Column(name = "post_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
+    private String title;
+
+
+
+    @Lob //clob과 같은 큰타입의 문자타입으로 컬럼을 만든다
+    @Column(columnDefinition = "longtext")
     private String content;
 
-    private LocalDateTime regDate;
-
-    @ManyToOne
-    @JoinColumn(name = "board_id")
-    private Board board;
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
 }

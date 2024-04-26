@@ -28,4 +28,19 @@ public class OrderItem  extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY) // OrderItem이 item을 참조한다.
     @JoinColumn(name = "item_id")
     private Item item;
+
+    public static OrderItem createOrderItem(Item item, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setItem(item);
+        orderItem.setCount(count);
+        orderItem.setOrderPrice(item.getPrice());
+
+        item.removeStock(count); // item 객체 안의 재고변경
+        return orderItem;
+    }
+
+    public int getTotalPrice() {
+        return orderPrice * count; // 총 가격.
+    }
+
 }

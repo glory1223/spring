@@ -76,6 +76,8 @@ public class ItemController {
         return "item/itemModifyForm";
     }
 
+
+
     /*
     // 상품 수정(update)
     @PostMapping(value ="/admin/item/{itemId}")
@@ -176,6 +178,8 @@ public class ItemController {
         model.addAttribute("item", itemFormDto);
         return "item/itemDtl";
     }
+
+    //
 
 
 }

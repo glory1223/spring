@@ -43,4 +43,10 @@ public class OrderItem  extends BaseEntity {
         return orderPrice * count; // 총 가격.
     }
 
+    // 재고를 원래대로 돌리는 메소드
+    public void cancel() {
+        // 이전에 주문을 한만큼(count) 다시 item의 stock을 더해준다.
+        this.getItem().addStock(count);
+    }
+
 }

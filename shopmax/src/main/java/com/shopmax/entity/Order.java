@@ -66,5 +66,18 @@ public class Order { // 테이블명을 order이라고 하면 에러가남(order
         }
         return  totalPrice;
     }
-    
+
+
+    // 주문 취소
+    public void cancelOrder() {
+        this.orderStatus = OrderStatus.CANCEL;
+
+        // 재고를 원래대로 돌려놓는다.
+        for(OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
+    }
+
+
+
 }

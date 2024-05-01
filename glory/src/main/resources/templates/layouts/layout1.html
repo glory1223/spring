@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gloria</title>
+
+    <!--Open Graph-->
+    <!--http://ogp.me/-->
+    <!-- https://velog.io/@byeol4001/Meta-Tag-OG%EC%98%A4%ED%94%88%EA%B7%B8%EB%9E%98%ED%94%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0 -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Burgurking" />
+    <meta property="og:title" content="Burgurking" />
+    <meta property="og:description" content="버거킹! 이것이 운명적 와퍼, 앵그리 트러플 와퍼 출시!" />
+    <meta property="og:image" content="./img/logo.gif" />
+    <meta property="og:url" content="https://www.burgerking.co.kr/" />
+
+    <!--Twitter Card-->
+    <!--https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started-->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="Burgurking" />
+    <meta property="twitter:title" content="Burgurking" />
+    <meta property="twitter:description" content="버거킹! 이것이 운명적 와퍼, 앵그리 트러플 와퍼 출시!" />
+    <meta property="twitter:image" content="./img/logo.gif" />
+    <meta property="twitter:url" content="https://www.burgerking.co.kr/" />
+
+    <!-- 파비콘 -->
+    <!-- https://www.favicon-generator.org/ -->
+    <!-- https://hongpage.kr/28 -->
+    <link rel="apple-touch-icon" sizes="57x57" href="./img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./img/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="./img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- css -->
+    <link rel="stylesheet" href="./library/fontawesome-free-5.15.3-web/css/all.min.css">
+    <link rel="stylesheet" href="./library/swiper5/swiper.css">
+    <link rel="stylesheet" href="./library/animate/animate.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <!-- 각 페이지의 CSS가 작성될 위치 -->
+    <th:block layout:fragment="css">
+
+        .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        }
+
+        .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        }
+
+    </th:block>
+</head>
+<body>
+    <div class="site-wrap">
+        <div th:replace="fragments/header::header"></div>
+        <div layout:fragment="content" class="content"></div>
+        <div th:replace="fragments/footer::footer"></div>
+    </div>
+
+    <!-- 공통으로 쓰이는 js  -->
+    <!-- script -->
+    <script src="./library/swiper5/swiper.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- 각 페이지의 스크립트가 작성될 위치 -->
+    <th:block layout:fragment="script">
+        // 모달 열기
+        document.getElementById('openModal').addEventListener('click', function() {
+        document.getElementById('myModal').style.display = 'block';
+        });
+
+        // 모달 닫기
+        document.getElementsByClassName('close')[0].addEventListener('click', function() {
+        document.getElementById('myModal').style.display = 'none';
+        });
+    </th:block>
+</body>
+</html>

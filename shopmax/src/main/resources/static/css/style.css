@@ -20,7 +20,7 @@ a {
   a:hover {
     text-decoration: none; }
 
-.text-black {
+.text-#ee4266 {
   color: #000; }
 
 .site-wrap:before {
@@ -59,11 +59,11 @@ a {
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none; }
-  .btn.btn-black {
+  .btn.btn-#ee4266 {
     padding: 12px 30px;
     background: #000;
     color: #fff; }
-    .btn.btn-black:hover, .btn.btn-black:active, .btn.btn-black:focus {
+    .btn.btn-#ee4266:hover, .btn.btn-#ee4266:active, .btn.btn-#ee4266:focus {
       background-color: #333333; }
 
 .form-control {

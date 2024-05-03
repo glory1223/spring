@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
 <header class="header" th:fragment="header">
     <div class="header__Mnav animate__animated animate__slideInLeft">
         <div class="trigger">
@@ -112,12 +114,19 @@
                 </ul>
             </nav>
             <div class="delivery-order">
-                <button id="openModal" class="button button--shape-red">로그인</button>
+                <!-- sec:authorize="isAnonymous()" => 익명인상태(로그인하지않은) 경우 보여준다.-->
+                <li><a href="/member/login" sec:authorize="isAnonymous()">로그인</a></li>
+                <li><a href="/member/logout" sec:authorize="isAuthenticated()">로그아웃</a></li>
             </div>
+
+
+
 
 
         </div>
     </div>
     <div class="header__panel"></div>
 </header>
+
+
 </html>

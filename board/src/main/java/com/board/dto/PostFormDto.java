@@ -15,11 +15,16 @@ public class PostFormDto {
     @NotBlank(message= "제목은 필수 입력입니다.")
     private String title;
 
-    @NotNull(message= "이름은 필수 입력입니다.")
-    private String name;
-
     @NotNull(message= "내용은 필수 입력입니다.")
     private String content;
+
+    private String createdBy;
+
+    private String regDate;
+
+    private String updateDate;
+
+    private Long memberId;
 
 
     //modelMapper 를 사용해서 dto <-> entity 편하게 바꿔요.

@@ -32,13 +32,12 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="editor">글쓰기</label>
-                                            <div id ="editor"></div>
+                                            <label th:for="content">글쓰기</label>
+                                            <div></div>
                                             <textarea th:field="*{content}" placeholder="내용을 입력해 주세요~"></textarea>
                                         </div>
 
-                                        <button class="btn btn-primary solid blank mt-3" type="submit"
-                                                >
+                                        <button class="btn btn-primary solid blank mt-3" type="submit">
                                             게시글 등록하기
                                         </button>
                                     </div>
@@ -56,6 +55,9 @@
 <th:block layout:fragment="script">
     <script th:src="@{plugins/ckeditor5/build/ckeditor.js}"></script>
     <script th:inline="javascript">
+
+
+
 
     </script>
 </th:block>

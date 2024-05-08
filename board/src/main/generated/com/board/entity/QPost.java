@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -16,6 +17,8 @@ import com.querydsl.core.types.Path;
 public class QPost extends EntityPathBase<Post> {
 
     private static final long serialVersionUID = 1493105078L;
+
+    private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QPost post = new QPost("post");
 
@@ -27,6 +30,8 @@ public class QPost extends EntityPathBase<Post> {
     public final StringPath createdBy = _super.createdBy;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
+
+    public final QMember member;
 
     //inherited
     public final StringPath modifiedBy = _super.modifiedBy;
@@ -42,15 +47,24 @@ public class QPost extends EntityPathBase<Post> {
     public final DateTimePath<java.time.LocalDateTime> updateTime = _super.updateTime;
 
     public QPost(String variable) {
-        super(Post.class, forVariable(variable));
+        this(Post.class, forVariable(variable), INITS);
     }
 
     public QPost(Path<? extends Post> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QPost(PathMetadata metadata) {
-        super(Post.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QPost(PathMetadata metadata, PathInits inits) {
+        this(Post.class, metadata, inits);
+    }
+
+    public QPost(Class<? extends Post> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
     }
 
 }

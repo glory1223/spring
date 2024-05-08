@@ -1,5 +1,6 @@
 package com.board.entity;
 
+import com.board.dto.PostFormDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +28,18 @@ public class Post extends BaseEntity{
     @Column(columnDefinition = "longtext")
     private String content;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)// Order가 Member를 참조한다/
+    @JoinColumn(name = "member_id") // FK로 사용하겠다
+    private Member member;
+
+
+
+    // post 엔티티 수정하는 메소드.
+    public void updatePost(PostFormDto postFormDto) {
+        this.title = postFormDto.getTitle();
+//       this.name = postFormDto.getName();
+        this.content = postFormDto.getContent();
+
+    }
 }
